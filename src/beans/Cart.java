@@ -2,6 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Cart implements Serializable {
 	private Item item;
 	private int count;

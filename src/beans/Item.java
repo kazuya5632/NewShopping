@@ -3,6 +3,7 @@ package beans;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Item implements Serializable{
 	private int code;
 	private String name;

@@ -10,11 +10,14 @@
 <body>
 
 	<h1>商品一覧</h1>
-	<table>
+	<table border="1">
 		<tr>
 			<td>商品番号</td>
 			<td>商品名</td>
-			<td>単価</td>
+			<td>単価
+			<a href="/NewShopping/shop?action=sortShow&category_code=${sortCode}&sort=price&sort_pattern=asc">▲</a>
+			<a href="/NewShopping/shop?action=sortShow&category_code=${sortCode}&sort=price&sort_pattern=desc">▼</a>
+			</td>
 		</tr>
 
 		<c:forEach var="item" items="${items}">
@@ -26,5 +29,6 @@
 		</c:forEach>
 
 	</table>
+	
 </body>
 </html>

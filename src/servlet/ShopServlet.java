@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * Servlet implementation class ShopServlet
  */
@@ -40,8 +41,10 @@ public class ShopServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+		// request取得
 		String action = request.getParameter("action");
-
+		
 		// nullチェック
 		if (action == null) {
 			action = "top";
@@ -65,7 +68,23 @@ public class ShopServlet extends HttpServlet {
 			} else {
 			}
 
-		} else if (action.equals("")) {
+		} else if (action.equals("showItemByCategory")) {
+			ShowItemByCategoryAction a = new ShowItemByCategoryAction();
+			boolean result = a.execute(request, response);
+			if (result) {
+				RequestDispatcher rd = request.getRequestDispatcher("/showItem.jsp");
+				rd.forward(request, response);
+			} else {
+			}
+
+		} else if (action.equals("sortShow")) {
+			SortShowAction a = new SortShowAction();
+			boolean result = a.execute(request, response);
+			if (result) {
+				RequestDispatcher rd = request.getRequestDispatcher("/showItem.jsp");
+				rd.forward(request, response);
+			} else {
+			}
 		}
 	}
 }

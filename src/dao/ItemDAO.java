@@ -31,4 +31,7 @@ public interface ItemDAO {
 
 	// カテゴリ全件取得
 	abstract List<Category> findAllCategory() throws DAOException;
+
+	// ソート
+	abstract List<Item> sortColumn(String category_code, String sort, String sortPattern) throws DAOException;
 }

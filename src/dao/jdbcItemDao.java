@@ -204,4 +204,46 @@ public class jdbcItemDao implements ItemDAO {
 		}
 		return list;
 	}
+
+	@Override
+	public List<Item> sortColumn(String category_code, String sort, String sortPattern) throws DAOException {
+		ResultSet rs = null;
+		PreparedStatement statement = null;
+		List<Item> list = new ArrayList<Item>();
+		String sql = "";
+		try {
+			if (category_code.equals("")) {
+				// 全件検索後のソート
+				sql = "select * from item order by " + sort + " " + sortPattern;
+				statement = connection.prepareStatement(sql);
+			} else {
+				// カテゴリ検索後のソート
+				int categoryCode = Integer.parseInt(category_code);
+     			sql = "select * from item where category_code = ? order by " + sort + " " + sortPattern;
+    			statement = connection.prepareStatement(sql);
+    			statement.setInt(1, categoryCode);
+			}
+			rs = statement.executeQuery();
+
+			while (rs.next()) {
+				int code = rs.getInt("code");
+				int categoryCode = rs.getInt("category_code");
+				String name = rs.getString("name");
+				int price = rs.getInt("price");
+				Item item = new Item(code, categoryCode, name, price);
+				list.add(item);
+			}
+		} catch (Exception e) {
+			throw new DAOException();
+	/*	} finally {
+			try {
+				if (statement != null) {
+					rs.close();
+					connection.close();
+				}
+			} catch (Exception e) {
+			} */
+		}
+		return list;
+	}
 }
