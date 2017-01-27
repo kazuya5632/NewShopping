@@ -9,7 +9,6 @@ import logic.ItemLogic;
 
 public class CmdShopping {
 
-	@SuppressWarnings({ "resource", "unused" })
 	public static void main(String[] args) {
 		int no;
 		boolean end = false;

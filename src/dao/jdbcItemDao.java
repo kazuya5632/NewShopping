@@ -37,16 +37,15 @@ public class jdbcItemDao implements ItemDAO {
 				Item item = new Item(code, category_code, name, price);
 				list.add(item);
 			}
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
-	/*	} finally {
-			try {
-				if (statement != null) {
-					rs.close();
-					connection.close();
-				}
-			} catch (Exception e) {
-			} */
+			/*
+			 * } finally { try { if (statement != null) { rs.close();
+			 * connection.close(); } } catch (Exception e) { }
+			 */
 		}
 		return list;
 	}
@@ -71,6 +70,9 @@ public class jdbcItemDao implements ItemDAO {
 				Item item = new Item(code, category, name, price);
 				list.add(item);
 			}
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -96,6 +98,9 @@ public class jdbcItemDao implements ItemDAO {
 				int price = rs.getInt("price");
 				item = new Item(code, category, name, price);
 			}
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -122,6 +127,9 @@ public class jdbcItemDao implements ItemDAO {
 				Item item = new Item(code, category, name, price);
 				list.add(item);
 			}
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -140,6 +148,9 @@ public class jdbcItemDao implements ItemDAO {
 			statement.setInt(3, item.getPrice());
 			statement.setInt(4, item.getCode());
 			statement.executeUpdate();
+
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -154,6 +165,9 @@ public class jdbcItemDao implements ItemDAO {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, code);
 			statement.executeUpdate();
+
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -170,6 +184,9 @@ public class jdbcItemDao implements ItemDAO {
 			statement.setString(2, item.getName());
 			statement.setInt(3, item.getPrice());
 			statement.executeUpdate();
+
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
 		}
@@ -191,20 +208,21 @@ public class jdbcItemDao implements ItemDAO {
 				Category category = new Category(code, name);
 				list.add(category);
 			}
+
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
-	/*	} finally {
-			try {
-				if (statement != null) {
-					rs.close();
-					connection.close();
-				}
-			} catch (Exception e) {
-			} */
+			/*
+			 * } finally { try { if (statement != null) { rs.close();
+			 * connection.close(); } } catch (Exception e) { }
+			 */
 		}
 		return list;
 	}
 
+	// ソート
 	@Override
 	public List<Item> sortColumn(String category_code, String sort, String sortPattern) throws DAOException {
 		ResultSet rs = null;
@@ -219,9 +237,9 @@ public class jdbcItemDao implements ItemDAO {
 			} else {
 				// カテゴリ検索後のソート
 				int categoryCode = Integer.parseInt(category_code);
-     			sql = "select * from item where category_code = ? order by " + sort + " " + sortPattern;
-    			statement = connection.prepareStatement(sql);
-    			statement.setInt(1, categoryCode);
+				sql = "select * from item where category_code = ? order by " + sort + " " + sortPattern;
+				statement = connection.prepareStatement(sql);
+				statement.setInt(1, categoryCode);
 			}
 			rs = statement.executeQuery();
 
@@ -233,16 +251,16 @@ public class jdbcItemDao implements ItemDAO {
 				Item item = new Item(code, categoryCode, name, price);
 				list.add(item);
 			}
+
+			rs.close();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			throw new DAOException();
-	/*	} finally {
-			try {
-				if (statement != null) {
-					rs.close();
-					connection.close();
-				}
-			} catch (Exception e) {
-			} */
+			/*
+			 * } finally { try { if (statement != null) { rs.close();
+			 * connection.close(); } } catch (Exception e) { }
+			 */
 		}
 		return list;
 	}

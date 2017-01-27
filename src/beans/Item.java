@@ -3,13 +3,22 @@ package beans;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Item implements Serializable{
 	private int code;
 	private String name;
 	private int price;
 	private int category_code;
+    private String categoryName;
 
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
 	public int getCategory_code() {
 		return category_code;
@@ -17,6 +26,17 @@ public class Item implements Serializable{
 
 	public void setCategory_code(int category_code) {
 		this.category_code = category_code;
+	}
+
+
+
+	public Item(int code, String name, int price, int category_code, String categoryName) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.category_code = category_code;
+		this.categoryName = categoryName;
 	}
 
 	@Override

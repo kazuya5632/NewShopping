@@ -53,9 +53,10 @@ public class ItemLogic {
 	public List<Category> searchAllCategory() throws DAOException {
 		return dao.findAllCategory();
 	}
-	
+
 	// ソート
 	public List<Item> sortColumn(String categoryCode, String sort, String sortPattern) throws DAOException {
 		return dao.sortColumn(categoryCode, sort, sortPattern);
 	}
+
 }

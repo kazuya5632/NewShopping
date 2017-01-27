@@ -11,9 +11,11 @@ import logic.ItemLogic;
 
 public class ShowItemByCategoryAction {
 	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
-		// パラメータは特に必要なし
 		ItemLogic logic = new ItemLogic();
-		int categoryCode = Integer.parseInt(request.getParameter("category"));
+
+		// リクエストからカテゴリコード取得
+		String cd = request.getParameter("category");
+		int categoryCode = Integer.parseInt(cd);
 		try {
 			List<Item> list = logic.findByCategory(categoryCode);
 			request.setAttribute("sortCode", categoryCode);

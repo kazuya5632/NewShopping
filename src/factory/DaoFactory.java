@@ -3,7 +3,6 @@ package factory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import dao.CartDAO;
 import dao.ItemDAO;
 import dao.jdbcItemDao;
 import exception.DBAccessException;
@@ -16,10 +15,6 @@ public class DaoFactory {
 		return new jdbcItemDao(getConnection());
 	}
 
-	// CartDAO生成
-	public static CartDAO createCartDAO() {
-		return new CartDAO();
-	}
 
 	// JDBC取得
 	public static Connection getConnection() {

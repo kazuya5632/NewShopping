@@ -2,7 +2,6 @@ package beans;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Category implements Serializable {
 	private int code;
 	private String name;
